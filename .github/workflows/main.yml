@@ -12,30 +12,24 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # (선택) 필요 시 빌드 단계 추가 (예: 정적 사이트 생성기 등)
-      # - name: Build
-      #   run: npm ci && npm run build
-
       - name: Prepare public folder
         run: |
-          # public 폴더 생성 후 배포하고 싶은 파일/폴더를 복사하세요.
           mkdir -p public
-          # 예: 리포지토리 루트에 있는 HTML 파일을 복사
           cp -r ./skt_ai_report_final_v5.html public/
-          # 예: assets 폴더가 있다면 같이 복사 (없어도 무시)
           cp -r ./assets public/ || true
-          # 만약 index.html로 접근되길 원하면 파일명 변경 가능
+          # 아래 주석 해제하면 index.html로 이름 변경됨
           # mv public/skt_ai_report_final_v5.html public/index.html
 
+      # ✅ 최신 버전(v4)으로 수정된 업로드 액션
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
+      # ✅ 최신 배포 액션 (v4)
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
