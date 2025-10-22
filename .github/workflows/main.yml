@@ -22,7 +22,7 @@ jobs:
           cp -r ./skt_ai_report_final_v5.html public/
           cp -r ./assets public/ || true
           # 아래 주석 해제하면 index.html로 이름 변경됨
-          # mv public/skt_ai_report_final_v5.html public/index.html
+          # mv public/index.html public/index.html
 
       # ✅ 최신 버전(v4)으로 수정된 업로드 액션
       - name: Upload artifact for GitHub Pages
